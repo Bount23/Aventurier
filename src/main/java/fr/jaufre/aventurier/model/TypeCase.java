@@ -10,10 +10,6 @@ public enum TypeCase {
         this.symbole = symbole;
     }
 
-    public char getSymbole() {
-        return symbole;
-    }
-
     public boolean estAccessible() {
         return this == LIBRE;
     }

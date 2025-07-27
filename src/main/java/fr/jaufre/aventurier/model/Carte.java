@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class Carte {
-    private Map<Position, TypeCase> cases;
+    private final Map<Position, TypeCase> cases;
     private Aventurier aventurier;
 
     public Carte(Map<Position, TypeCase> cases, Aventurier aventurier) {
@@ -53,7 +53,7 @@ public class Carte {
                 } else {
                     TypeCase type = cases.get(pos);
                     if (type != null) {
-                        sb.append(type.equals(TypeCase.LIBRE) ? " " : "#");
+                        sb.append(type.estAccessible() ? " " : "#");
                     }
                 }
             }
@@ -66,6 +66,6 @@ public class Carte {
         if(!cases.containsKey(position)) return false; // On est à l'extérieur de la cartes
         TypeCase typeCase = cases.get(position);
         if (typeCase == null) return false; // Case non définie
-        return typeCase.equals(TypeCase.LIBRE); // On ne peut se déplacer que sur des cases libres
+        return typeCase.estAccessible(); // On ne peut se déplacer que sur des cases libres
     }
 }
