@@ -61,4 +61,11 @@ public class Carte {
 
         return sb.toString();
     }
+
+    public boolean deplacementIsValide(Position position) {
+        if(!cases.containsKey(position)) return false; // On est à l'extérieur de la cartes
+        TypeCase typeCase = cases.get(position);
+        if (typeCase == null) return false; // Case non définie
+        return typeCase.equals(TypeCase.LIBRE); // On ne peut se déplacer que sur des cases libres
+    }
 }

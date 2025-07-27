@@ -9,17 +9,11 @@ import java.util.List;
 public class Aventurier {
 
     private Position position;
-    private List<String> sequenceDeplacements;
+    private List<Character> sequenceDeplacements;
 
-    public Aventurier(Position positionInitiale, List<String> sequenceDeplacements) {
+    public Aventurier(Position positionInitiale, List<Character> sequenceDeplacements) {
         this.position = positionInitiale;
         this.sequenceDeplacements = sequenceDeplacements;
-    }
-    public int getX() {
-        return position.getX();
-    }
-    public int getY() {
-        return position.getY();
     }
     public Position getPosition() {
         return position;
@@ -28,9 +22,33 @@ public class Aventurier {
         this.position = position;
     }
 
-    public String getNextDeplacement() {
+    private Character getNextDeplacement() {
         if (sequenceDeplacements.isEmpty()) return null;
         return sequenceDeplacements.remove(0);
+    }
+
+    public Position getNewPosition() {
+        Character deplacement = getNextDeplacement();
+        if (deplacement == null) return null;
+        Position newPosition = new Position(position.getX(), position.getY());
+
+        switch (deplacement) {
+            case 'N':
+                newPosition.setY(newPosition.getY() - 1);
+                break;
+            case 'S':
+                newPosition.setY(newPosition.getY() + 1);
+                break;
+            case 'E':
+                newPosition.setX(newPosition.getX() + 1);
+                break;
+            case 'O':
+                newPosition.setX(newPosition.getX() - 1);
+                break;
+            default:
+                throw new IllegalArgumentException("Direction inconnue : " + deplacement);
+        }
+        return newPosition;
     }
 
     @Override

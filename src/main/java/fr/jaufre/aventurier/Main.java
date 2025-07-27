@@ -3,6 +3,7 @@ package fr.jaufre.aventurier;
 import fr.jaufre.aventurier.carte.FilesLoader;
 import fr.jaufre.aventurier.model.Aventurier;
 import fr.jaufre.aventurier.model.Carte;
+import fr.jaufre.aventurier.model.Position;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,7 +37,6 @@ public class Main {
         logger.debug("Chargement de la carte depuis : " + cheminCarte);
         logger.debug("Chargement des déplacements depuis : " + cheminDeplacements);
 
-
         try {
             Aventurier aventurier = FilesLoader.chargerAventurierDepuisFichier(cheminDeplacements);
             Carte carte = FilesLoader.chargerCarteDepuisFichier(cheminCarte, aventurier);
@@ -44,6 +44,20 @@ public class Main {
             logger.debug("{}", carte);
             logger.info("{}", carte.toStringCarte());
 
+            logger.debug("Déplacement de l'aventurier");
+            Position nouvellePosition = aventurier.getNewPosition();
+            while (nouvellePosition != null) {
+                logger.debug("L'aventurier souhaite aller sur la position {}", nouvellePosition);
+                if(carte.deplacementIsValide(nouvellePosition)) {
+                    aventurier.setPosition(nouvellePosition);
+                } else {
+                    logger.warn("Déplacement non valide vers la position {}", nouvellePosition);
+                }
+                logger.info("Carte actuelle :\n{}", carte.toStringCarte());
+
+                nouvellePosition = aventurier.getNewPosition();
+            }
+            logger.info("Aventurier final : {}", aventurier.getPosition());
         } catch (Exception e) {
             logger.error("Erreur pendant l'exécution", e);
         }

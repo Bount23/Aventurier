@@ -13,6 +13,7 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Classe pour charger les fichier.
@@ -51,7 +52,10 @@ public class FilesLoader {
         }
 
         Position positionInitiale = new Position(Integer.parseInt(infos[0]), Integer.parseInt(infos[1]));
-        List<String> sequenceDeplacements = lignes.subList(1, lignes.size());
+        List<Character> sequenceDeplacements = lignes.subList(1, lignes.size())
+                .stream()
+                .flatMap(line -> line.trim().chars().mapToObj(c -> (char) c))
+                .collect(Collectors.toList());
 
         return new Aventurier(positionInitiale, sequenceDeplacements);
     }
