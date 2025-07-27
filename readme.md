@@ -67,16 +67,20 @@ Le personnage ne peut pas aller sur les cases occupées par les bois impénétra
 ## Test
 ### Premier test
 Le fichier suivant est fourni en entrée :
+```
 3,0
 SSSSEEEEEENN
+```
  
 Résultat attendu :
 Le personnage doit se trouver en (9,2)
  
 ### Deuxième test
 Le fichier suivant est fourni en entrée :
+```
 6,7
 OONOOOSSO
+```
  
 Résultat attendu :
 Le personnage doit se trouver en (1,9)
