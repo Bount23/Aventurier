@@ -1,13 +1,10 @@
-package fr.jaufre.aventurier.carte;
+package fr.jaufre.aventurier;
 
 import fr.jaufre.aventurier.model.Aventurier;
 import fr.jaufre.aventurier.model.Carte;
 import fr.jaufre.aventurier.model.Position;
 import fr.jaufre.aventurier.model.TypeCase;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;

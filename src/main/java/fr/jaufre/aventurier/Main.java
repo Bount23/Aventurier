@@ -1,6 +1,5 @@
 package fr.jaufre.aventurier;
 
-import fr.jaufre.aventurier.carte.FilesLoader;
 import fr.jaufre.aventurier.model.Aventurier;
 import fr.jaufre.aventurier.model.Carte;
 import fr.jaufre.aventurier.model.Position;
