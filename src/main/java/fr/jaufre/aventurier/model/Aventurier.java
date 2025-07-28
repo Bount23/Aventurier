@@ -30,25 +30,7 @@ public class Aventurier {
     public Position getNewPosition() {
         Character deplacement = getNextDeplacement();
         if (deplacement == null) return null;
-        Position newPosition = new Position(position.getX(), position.getY());
-
-        switch (deplacement) {
-            case 'N':
-                newPosition.setY(newPosition.getY() - 1);
-                break;
-            case 'S':
-                newPosition.setY(newPosition.getY() + 1);
-                break;
-            case 'E':
-                newPosition.setX(newPosition.getX() + 1);
-                break;
-            case 'O':
-                newPosition.setX(newPosition.getX() - 1);
-                break;
-            default:
-                throw new IllegalArgumentException("Direction inconnue : " + deplacement);
-        }
-        return newPosition;
+        return Direction.fromChar(deplacement).appliquer(position);
     }
 
     @Override
